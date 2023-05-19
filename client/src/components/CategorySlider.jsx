@@ -72,7 +72,7 @@ const CategoryContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: ${(props) => (props.selected ? "0 -1px 0 #000 inset" : "")};
+  box-shadow: ${(props) => (props.selected ? "0px 15px 10px -15px #000 " : "")};
 `;
 
 const CategoryIcon = styled.div`

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Empty from "../components/Empty";
 import TripCard from "../components/TripCard";
 import TripCardLoader from "../components/Loaders/TripCardLoader";
 
@@ -51,7 +52,13 @@ const Order = () => {
       <Wrapper>
         <Navbar scrollPosition={80} />
         <Heading>Your Orders:</Heading>
-        {isLoading ? <TripCardLoader /> : <TripCard tripData={data} />}
+        {isLoading ? (
+          <TripCardLoader />
+        ) : data.length === 0 ? (
+          <Empty wishlist={false} />
+        ) : (
+          <TripCard tripData={data} />
+        )}
       </Wrapper>
       <Footer />
     </>

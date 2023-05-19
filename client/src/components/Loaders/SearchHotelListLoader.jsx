@@ -11,14 +11,9 @@ const Container = styled.div`
 const SearchHotelListLoader = () => {
   return (
     <Container>
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
-      <HotelCardLoader />
+      {Array.from({ length: 8 }, (_, i) => i).map((index) => (
+        <HotelCardLoader key={index} />
+      ))}
     </Container>
   );
 };

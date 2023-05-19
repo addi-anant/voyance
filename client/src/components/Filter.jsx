@@ -31,10 +31,12 @@ const FilterButton = styled.button`
 const Filter = ({ category, setCategory, modal, setModal }) => {
   return (
     <>
-      {modal && (
+      {modal ? (
         <Modal>
           <FilterProperties modal={modal} setModal={setModal} />
         </Modal>
+      ) : (
+        <></>
       )}
 
       <Container>

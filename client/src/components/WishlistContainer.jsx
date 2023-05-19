@@ -1,11 +1,10 @@
-import { useQueries } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { largeMobile, mobile } from "../utils/responsive";
 
 import HotelCard from "./HotelCard";
+import Empty from "./Empty";
 import SearchHotelListLoader from "./Loaders/SearchHotelListLoader";
 import { axiosBaseURL } from "../utils/axiosBaseURL";
 
@@ -60,6 +59,8 @@ const WishlistContainer = () => {
       <Heading>Your Wishlist:</Heading>
       {isLoading ? (
         <SearchHotelListLoader />
+      ) : hotelList.length === 0 ? (
+        <Empty wishlist={true} />
       ) : (
         <Wrapper>
           {hotelList.map((hotelInfo) => (

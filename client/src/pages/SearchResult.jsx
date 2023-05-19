@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { axiosBaseURL } from "../utils/axiosBaseURL";
+import NoResult from "../components/NoResult";
 
 const Wrapper = styled.div`
   width: calc(100vw - 10%);
@@ -54,6 +55,8 @@ const SearchResult = () => {
         />
         {isLoading ? (
           <SearchHotelListLoader />
+        ) : data.length === 0 ? (
+          <NoResult />
         ) : (
           <SearchHotelList hotel_data={data} />
         )}

@@ -279,7 +279,6 @@ const HotelCard = ({ hotelInfo, color }) => {
               </RatingContainer>
             </HeaderContainer>
             <Info> {trimTitle(hotelInfo.name)} </Info>
-            <Date> date here </Date>
             <PriceDetails>
               <Price>
                 <CurrencyRupee style={{ transform: "scale(0.7)" }} />
