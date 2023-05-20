@@ -4,7 +4,7 @@ module.exports.featured_hotel = async (req, res) => {
   try {
     const query =
       req.query.category !== "" ? { propertyType: req.query.category } : {};
-    const hotel = await Hotel.find(query).sort({ updatedAt: -1 }).limit(4);
+    const hotel = await Hotel.find(query).sort({ updatedAt: 1 }).limit(4);
 
     return res.status(200).json(hotel);
   } catch (Err) {
@@ -54,7 +54,7 @@ module.exports.search = async (req, res) => {
       }),
     };
 
-    const hotels = await Hotel.find(filter);
+    const hotels = await Hotel.find(filter).sort({ updatedAt: -1 });
     return res.status(200).json(hotels);
   } catch (Err) {
     console.log(`Error fetching hotel : ${Err}`);

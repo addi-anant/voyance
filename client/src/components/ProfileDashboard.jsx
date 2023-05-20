@@ -65,6 +65,7 @@ const ProfileDashboard = ({ setShowLoginModal, setShowRegisterModal }) => {
     mutation.mutate(wishlist);
     dispatch(clearWishlist());
     dispatch(logout());
+    navigate("/");
   };
 
   /* Material-UI defined state and Functions: */

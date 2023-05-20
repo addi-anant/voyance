@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const OuterWrapper = styled.div`
+  width: calc(100vw - 10%);
+  margin: 0% 5%;
   position: relative;
 `;
 
@@ -19,13 +21,13 @@ const AddHotel = () => {
   const { width } = useWindowDimensions();
   return (
     <>
-      {/* <OuterWrapper> */}
-      <Navbar />
-      <Wrapper>
-        {width > 768 && <HostIntroduction />} <HotelForm />
-      </Wrapper>
-      {/* </OuterWrapper> */}
-      <Footer />
+      <OuterWrapper>
+        <Navbar scrollPosition={80} />
+        <Wrapper>
+          {width > 768 && <HostIntroduction />} <HotelForm />
+        </Wrapper>
+        <Footer />
+      </OuterWrapper>
     </>
   );
 };

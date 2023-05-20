@@ -24,7 +24,7 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.isFetching = false;
       state.error = false;
-      window.location.reload(); // to re-render the homepage.
+      // window.location.reload(); // to re-render the homepage.
     },
     updateToken: (state, action) => {
       state.currentUser.accessToken = action.payload.newAccessToken;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -36,6 +36,11 @@ const Heading = styled.div`
 const Order = () => {
   /* Get the current user from the redux store: */
   const user = useSelector((store) => store.user.currentUser);
+
+  /* Scrolling to top of page whenever page reloads: */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { isLoading, error, data } = useQuery([`Order_${user._id}`], () =>
     axiosBaseURL

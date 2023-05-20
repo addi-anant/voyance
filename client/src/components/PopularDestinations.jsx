@@ -216,13 +216,13 @@ const PopularDestinations = () => {
               <Img src="https://images.unsplash.com/photo-1586255028095-d93edb74e412?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" />
             </ImgContainer>
             <InfoContainer>
-              <Title>Nainital, India</Title>
+              <Title>Uttarakhand, India</Title>
               <Description>100+ Spots 4D & 5N</Description>
             </InfoContainer>
             <NextArrowContainer>
               <ArrowForwardIos
                 style={{ transform: "scale(0.7)", cursor: "pointer" }}
-                onClick={() => handleSearch("nainital")}
+                onClick={() => handleSearch("uttarakhand")}
               />
             </NextArrowContainer>
           </DestinationContainer>
