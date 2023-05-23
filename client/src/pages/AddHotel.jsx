@@ -26,8 +26,8 @@ const AddHotel = () => {
         <Wrapper>
           {width > 768 && <HostIntroduction />} <HotelForm />
         </Wrapper>
-        <Footer />
       </OuterWrapper>
+      <Footer />
     </>
   );
 };
