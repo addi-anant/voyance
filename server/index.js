@@ -10,17 +10,17 @@ require("./config/Passport_auth");
 
 const app = express();
 
-app.use(
-  session({
-    secret: "somethingsecretgoeshere",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
-  })
-);
+// app.use(
+//   session({
+//     secret: "somethingsecretgoeshere",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true },
+//   })
+// );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 dotenv.config();
 
@@ -38,9 +38,9 @@ mongoose
   .catch((error) => console.log(error));
 
 app.use(express.json()); // -> allows the app to take json as post request input.
-
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+
 // use express router: -> all the request will be handled by the index.js file in the routes folder.
 app.use("/", require("./routes/index"));
 

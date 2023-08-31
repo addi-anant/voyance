@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { search } from "../redux/filterAndSearchSlice";
 import empty from "../static/Error.png";
-import { desktop, largeMobile, tablet } from "../utils/responsive";
+import { desktop, largeMobile } from "../utils/responsive";
 
 const Wrapper = styled.div`
   display: flex;

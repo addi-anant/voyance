@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Empty from "../components/Empty";
 import TripCard from "../components/TripCard";
 import TripCardLoader from "../components/Loaders/TripCardLoader";
@@ -12,9 +10,10 @@ import { axiosBaseURL } from "../utils/axiosBaseURL";
 import { largeMobile, mobile } from "../utils/responsive";
 
 const Wrapper = styled.div`
-  width: calc(100vw - 10%);
   margin: 0% 5%;
+  padding-top: 80px;
   position: relative;
+  width: calc(100vw - 10%);
 `;
 
 const Heading = styled.div`
@@ -42,7 +41,7 @@ const Order = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { isLoading, error, data } = useQuery([`Order_${user._id}`], () =>
+  const { isLoading, data } = useQuery([`Order_${user._id}`], () =>
     axiosBaseURL
       .get(`order/${user._id}`, {
         withCredentials: true,
@@ -53,20 +52,16 @@ const Order = () => {
   );
 
   return (
-    <>
-      <Wrapper>
-        <Navbar scrollPosition={80} />
-        <Heading>Your Orders:</Heading>
-        {isLoading ? (
-          <TripCardLoader />
-        ) : data.length === 0 ? (
-          <Empty wishlist={false} />
-        ) : (
-          <TripCard tripData={data} />
-        )}
-      </Wrapper>
-      <Footer />
-    </>
+    <Wrapper>
+      <Heading>Your Orders:</Heading>
+      {isLoading ? (
+        <TripCardLoader />
+      ) : data.length === 0 ? (
+        <Empty wishlist={false} />
+      ) : (
+        <TripCard tripData={data} />
+      )}
+    </Wrapper>
   );
 };
 

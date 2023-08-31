@@ -11,6 +11,7 @@ import EditHotel from "./pages/EditHotel";
 import SearchResult from "./pages/SearchResult";
 import HotelInformation from "./pages/HotelInformation";
 import { useSelector } from "react-redux";
+import Wrapper from "./components/Wrapper";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -20,12 +21,77 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/order" element={!user ? <Home /> : <Order />} />
-          <Route path="/profile" element={!user ? <Home /> : <Profile />} />
-          <Route path="/wishlist" element={!user ? <Home /> : <Wishlist />} />
-          <Route path="/search" element={<SearchResult />} />
-          <Route path="/hotel-information/:id" element={<HotelInformation />} />
+          <Route
+            path="/"
+            element={
+              <Wrapper home="home">
+                <Home />
+              </Wrapper>
+            }
+          />
+
+          <Route
+            path="/order"
+            element={
+              !user ? (
+                <Wrapper>
+                  <Home />
+                </Wrapper>
+              ) : (
+                <Wrapper>
+                  <Order />
+                </Wrapper>
+              )
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              !user ? (
+                <Wrapper>
+                  <Home />
+                </Wrapper>
+              ) : (
+                <Wrapper>
+                  <Profile />
+                </Wrapper>
+              )
+            }
+          />
+
+          <Route
+            path="/wishlist"
+            element={
+              !user ? (
+                <Wrapper>
+                  <Home />
+                </Wrapper>
+              ) : (
+                <Wrapper>
+                  <Wishlist />
+                </Wrapper>
+              )
+            }
+          />
+
+          <Route
+            path="/search"
+            element={
+              <Wrapper>
+                <SearchResult />
+              </Wrapper>
+            }
+          />
+
+          <Route
+            path="/hotel-information/:id"
+            element={
+              <Wrapper>
+                <HotelInformation />
+              </Wrapper>
+            }
+          />
 
           {/* Later Functionalities: */}
           <Route path="/plan" element={<PlanTrip />} />

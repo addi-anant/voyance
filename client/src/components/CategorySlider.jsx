@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  background-color: ${(props) => (props.home === true ? "#f7f7f7" : "white")};
+  background-color: #f7f7f7;
   position: absolute;
   left: ${(props) => (props.dir === "left" ? "0px" : "")};
   right: ${(props) => (props.dir === "right" ? "0px" : "")};
@@ -89,7 +89,7 @@ const CategoryHeading = styled.div`
   cursor: pointer;
 `;
 
-const CategorySlider = ({ category, setCategory, home }) => {
+const CategorySlider = ({ category, setCategory }) => {
   // useRef hook;
   const ref = useRef(null);
 
@@ -129,7 +129,7 @@ const CategorySlider = ({ category, setCategory, home }) => {
 
   return (
     <Container>
-      <ButtonContainer dir="left" home={home}>
+      <ButtonContainer dir="left">
         <Button onClick={() => handleMove("left")}>
           <ArrowBackIosNew style={{ transform: "scale(0.7)" }} />
         </Button>
@@ -148,7 +148,7 @@ const CategorySlider = ({ category, setCategory, home }) => {
           );
         })}
       </Wrapper>
-      <ButtonContainer dir="right" home={home}>
+      <ButtonContainer dir="right">
         <Button onClick={() => handleMove("right")}>
           <ArrowForwardIos style={{ transform: "scale(0.7)" }} />
         </Button>

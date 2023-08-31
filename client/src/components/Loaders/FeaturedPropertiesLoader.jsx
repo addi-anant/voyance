@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import HotelCardLoader from "./HotelCardLoader";
 
@@ -8,16 +8,17 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `;
 
-const FeaturedPropertiesLoader_X4 = () => {
+const FeaturedPropertiesLoader = ({ visible }) => {
   return (
     <Container>
       {Array(4)
-        .fill(Math.random())
-        .map((val, index) => (
-          <HotelCardLoader key={index} />
-        ))}
+        .fill("")
+        .map(
+          (_, index) =>
+            (!visible || index !== 3) && <HotelCardLoader key={index} />
+        )}
     </Container>
   );
 };
 
-export default FeaturedPropertiesLoader_X4;
+export default FeaturedPropertiesLoader;

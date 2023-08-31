@@ -28,6 +28,7 @@ module.exports.info = async (req, res) => {
 
 module.exports.search = async (req, res) => {
   const query = req.query;
+  const index = query.pageParam;
 
   try {
     const filter = {
@@ -54,8 +55,11 @@ module.exports.search = async (req, res) => {
       }),
     };
 
-    const hotels = await Hotel.find(filter).sort({ updatedAt: -1 });
-    return res.status(200).json(hotels);
+    const accomodationList = await Hotel.find(filter)
+      .skip(Number((index - 1) * 8))
+      .limit(Number(8))
+      .sort({ updatedAt: -1 });
+    return res.status(200).json(accomodationList);
   } catch (Err) {
     console.log(`Error fetching hotel : ${Err}`);
     return res.status(500).json(Err);

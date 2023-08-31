@@ -15,6 +15,9 @@ import { wishlisthandler } from "../redux/wishlistSlice";
 import Modal from "./Modal";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { AddToWishlist, RemoveFromWishlist } from "../utils/notification";
+
+const Wrapper = styled.div``;
 
 const Button = styled.button`
   position: absolute;
@@ -128,13 +131,6 @@ const Info = styled.div`
   margin-top: 5px;
 `;
 
-const Date = styled.div`
-  font-size: 14px;
-  color: gray;
-  margin-top: 5px;
-  font-family: "Montserrat", sans-serif;
-`;
-
 const PriceDetails = styled.div`
   margin-top: 12px;
   display: flex;
@@ -156,11 +152,11 @@ const Duration = styled.span`
   font-family: "Montserrat", sans-serif;
 `;
 
-const HotelCard = ({ hotelInfo, color }) => {
+const AccomodationCard = React.forwardRef(({ hotelInfo }, ref) => {
   /* Get the signed in user from the redux store: */
   const user = useSelector((store) => store.user.currentUser);
 
-  // Logic for string Truncation:
+  /* Logic for string Truncation: */
   const trimTitle = (title) => {
     if (title.length > 35) {
       title = title.substring(0, 35) + "...";
@@ -168,17 +164,9 @@ const HotelCard = ({ hotelInfo, color }) => {
     return title;
   };
 
-  // Logic for Changing color of wishlist Icon:
+  /* Logic for Changing color of wishlist Icon: */
   const dispatch = useDispatch();
-  const [wishlist, setWishlist] = useState(color);
-
-  const wishlistHanlder = (_id) => {
-    /* Check if user is logged in or not: */
-    if (!user) return;
-
-    dispatch(wishlisthandler(_id));
-    wishlist === "white" ? setWishlist("red") : setWishlist("white");
-  };
+  const { wishlist } = useSelector((store) => store.wishlist);
 
   /* Carousel util: */
   const [index, setIndex] = useState(0);
@@ -201,11 +189,18 @@ const HotelCard = ({ hotelInfo, color }) => {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   /* Handling wishlist functionality: */
-  const handleWishlist = (id) => {
-    !user ? setShowLoginModal(true) : wishlistHanlder(id);
+  const handleWishlist = (info) => {
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
+
+    dispatch(wishlisthandler(info));
+    const accomodation = wishlist.filter((acc) => acc._id === info._id);
+    accomodation.length === 0 ? AddToWishlist() : RemoveFromWishlist();
   };
 
-  return (
+  const AccomodationInfo = (
     <>
       {showLoginModal && (
         <Modal>
@@ -234,8 +229,12 @@ const HotelCard = ({ hotelInfo, color }) => {
           </ImgContainer>
 
           {/* Wishlist Icon: */}
-          <Like onClick={() => handleWishlist(hotelInfo._id)}>
-            <Favorite style={{ color: `${wishlist}`, fontSize: "28px" }} />
+          <Like onClick={() => handleWishlist(hotelInfo)}>
+            <Favorite
+              style={{
+                color: wishlist.indexOf(hotelInfo) === -1 ? "white" : "red",
+              }}
+            />
           </Like>
 
           {/* Backward Button: */}
@@ -291,6 +290,12 @@ const HotelCard = ({ hotelInfo, color }) => {
       </Container>
     </>
   );
-};
 
-export default HotelCard;
+  return ref ? (
+    <Wrapper ref={ref}>{AccomodationInfo}</Wrapper>
+  ) : (
+    <Wrapper>{AccomodationInfo}</Wrapper>
+  );
+});
+
+export default AccomodationCard;

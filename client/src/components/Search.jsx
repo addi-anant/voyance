@@ -4,7 +4,6 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import { desktop, largeMobile, mobile, tablet } from "../utils/responsive";
 
 import Modal from "./Modal";
-import Navbar from "./Navbar";
 import SearchSm from "./SearchSm";
 import SearchLgMd from "./SearchLgMd";
 import SearchInputModal from "./SearchInputModal";
@@ -38,7 +37,7 @@ const Container = styled.div`
   })};
 `;
 
-const Search = ({ scrollPosition }) => {
+const Search = () => {
   const { width } = useWindowDimensions();
   const [modal, setModal] = useState(false);
 
@@ -50,7 +49,6 @@ const Search = ({ scrollPosition }) => {
         </Modal>
       )}
 
-      {scrollPosition < 80 && <Navbar isHome={true} />}
       {width > 850 ? (
         <SearchLgMd />
       ) : (

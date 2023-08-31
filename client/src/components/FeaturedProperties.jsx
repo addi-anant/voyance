@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { axiosBaseURL } from "../utils/axiosBaseURL";
 
@@ -8,9 +7,8 @@ import styled from "styled-components";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 import HotelCard from "./HotelCard";
-import CategorySlider from "./CategorySlider";
-import FeaturedPropertiesLoader_X3 from "./Loaders/FeaturedPropertiesLoader_X3";
-import FeaturedPropertiesLoader_X4 from "./Loaders/FeaturedPropertiesLoader_X4";
+import OptionSlider from "./OptionSlider";
+import FeaturedPropertiesLoader from "./Loaders/FeaturedPropertiesLoader";
 
 const Container = styled.div`
   height: max-content;
@@ -39,72 +37,40 @@ function FeaturedProperties({ home }) {
   const { width } = useWindowDimensions();
   const visible = width >= 980 && width < 1315;
 
-  // Logic for handling the state of selection property type:
-  // category -> cantain the type of property to be fetched from DB.
+  /* Logic for handling the state of selection property type: */
   const [category, setCategory] = useState("");
 
   /* Fetching Hotel Information using React Query: */
-  const {
-    isLoading: hotelLoading,
-    error: hotelError,
-    data: hotelData,
-    refetch,
-  } = useQuery([`featured-hotel-${category}`], () =>
-    axiosBaseURL
-      .get(`hotel/featured-hotel?category=${category}`)
-      .then((featured_hotel) => {
-        return featured_hotel.data;
-      })
+  const { isLoading, data, refetch } = useQuery(
+    [`featured-hotel-${category}`],
+    () =>
+      axiosBaseURL
+        .get(`hotel/featured-hotel?category=${category}`)
+        .then((featured_hotel) => {
+          return featured_hotel.data;
+        })
   );
-
-  /* Fetching user wishlist using Redux: */
-  const { wishlist } = useSelector((store) => store.wishlist);
 
   useEffect(() => {
     refetch();
-  }, [category]);
-
-  const colorHandler = (_id) => {
-    const index = wishlist.indexOf(_id);
-    return index === -1 ? "white" : "red";
-  };
+  }, [refetch, category]);
 
   return (
     <Container>
       <Heading>Featured Properties</Heading>
-      <CategorySlider
-        category={category}
-        setCategory={setCategory}
-        home={home}
-      />
+      <OptionSlider category={category} setCategory={setCategory} />
 
       <Wrapper>
-        {hotelLoading ? (
-          visible ? (
-            <FeaturedPropertiesLoader_X3 />
-          ) : (
-            <FeaturedPropertiesLoader_X4 />
-          )
+        {isLoading ? (
+          <FeaturedPropertiesLoader visible={visible} />
         ) : (
           <>
-            {visible
-              ? hotelData?.map(
-                  (hotelInfo, index) =>
-                    index !== 3 && (
-                      <HotelCard
-                        key={index}
-                        hotelInfo={hotelInfo}
-                        color={colorHandler(hotelInfo._id)}
-                      />
-                    )
+            {data?.map(
+              (hotelInfo, index) =>
+                (!visible || index !== 3) && (
+                  <HotelCard hotelInfo={hotelInfo} key={hotelInfo?._id} />
                 )
-              : hotelData?.map((hotelInfo, index) => (
-                  <HotelCard
-                    key={index}
-                    hotelInfo={hotelInfo}
-                    color={colorHandler(hotelInfo._id)}
-                  />
-                ))}
+            )}
           </>
         )}
       </Wrapper>
