@@ -147,7 +147,7 @@ const HotelInformation = () => {
         <>
           {lightBox ? (
             <LightBox
-              hotelImages={data.images}
+              hotelImages={data?.images}
               index={index}
               setIndex={setIndex}
               toggleLightBox={toggleLightBox}
@@ -174,8 +174,8 @@ const HotelInformation = () => {
               <Wrapper>
                 <HotelHeading data={data} />
                 <HotelImageSlider
-                  thumbnail={data.images[0]}
-                  displayImages={data.images.slice(1)}
+                  thumbnail={data?.images[0]}
+                  displayImages={data?.images?.slice(1)}
                   setIndex={setIndex}
                   toggleLightBox={toggleLightBox}
                 />

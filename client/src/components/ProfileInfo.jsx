@@ -6,7 +6,7 @@ import { updateUser } from "../redux/userSlice";
 import { Close, Edit } from "@mui/icons-material";
 import { ProfileUpdated } from "../utils/notification";
 
-const RightContainer = styled.div`
+const Container = styled.div`
   height: max-content;
   width: 100%;
   flex: 1.6;
@@ -198,10 +198,8 @@ const ProfileInfo = ({ setProfileImage }) => {
     ProfileUpdated();
   };
 
-  console.log(profileInfo);
-
   return (
-    <RightContainer>
+    <Container>
       <InformationContainer>
         <Heading>
           About
@@ -286,7 +284,7 @@ const ProfileInfo = ({ setProfileImage }) => {
           </ButtonWrapper>
         )}
       </InformationContainer>
-    </RightContainer>
+    </Container>
   );
 };
 

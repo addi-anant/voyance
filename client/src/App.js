@@ -1,17 +1,28 @@
+import { Suspense, lazy } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import Home from "./pages/Home";
-import Order from "./pages/Order";
-import Profile from "./pages/Profile";
-import PlanTrip from "./pages/PlanTrip";
-import Wishlist from "./pages/Wishlist";
-import AddHotel from "./pages/AddHotel";
-import EditHotel from "./pages/EditHotel";
-import SearchResult from "./pages/SearchResult";
-import HotelInformation from "./pages/HotelInformation";
-import { useSelector } from "react-redux";
 import Wrapper from "./components/Wrapper";
+import HotelInformationLoader from "./components/Loaders/HotelInformationLoader";
+import styled from "styled-components";
+import SearchHotelListLoader from "./components/Loaders/SearchHotelListLoader";
+import TripCardLoader from "./components/Loaders/TripCardLoader";
+import ProfileLoader from "./components/Loaders/ProfileLoader";
+
+const Order = lazy(() => import("./pages/Order"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
+const SearchResult = lazy(() => import("./pages/SearchResult"));
+const HotelInformation = lazy(() => import("./pages/HotelInformation"));
+
+const ExternalWrapper = styled.div`
+  margin: 0% 5%;
+  padding-top: 80px;
+  position: relative;
+  width: calc(100vw - 10%);
+`;
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -39,7 +50,14 @@ export default function App() {
                 </Wrapper>
               ) : (
                 <Wrapper>
-                  <Order />
+                  <Suspense
+                    fallback={
+                      <ExternalWrapper>
+                        <TripCardLoader />
+                      </ExternalWrapper>
+                    }>
+                    <Order />
+                  </Suspense>
                 </Wrapper>
               )
             }
@@ -54,7 +72,14 @@ export default function App() {
                 </Wrapper>
               ) : (
                 <Wrapper>
-                  <Profile />
+                  <Suspense
+                    fallback={
+                      <ExternalWrapper>
+                        <ProfileLoader />
+                      </ExternalWrapper>
+                    }>
+                    <Profile />
+                  </Suspense>
                 </Wrapper>
               )
             }
@@ -69,7 +94,14 @@ export default function App() {
                 </Wrapper>
               ) : (
                 <Wrapper>
-                  <Wishlist />
+                  <Suspense
+                    fallback={
+                      <ExternalWrapper>
+                        <SearchHotelListLoader />
+                      </ExternalWrapper>
+                    }>
+                    <Wishlist />
+                  </Suspense>
                 </Wrapper>
               )
             }
@@ -79,7 +111,14 @@ export default function App() {
             path="/search"
             element={
               <Wrapper>
-                <SearchResult />
+                <Suspense
+                  fallback={
+                    <ExternalWrapper>
+                      <SearchHotelListLoader />
+                    </ExternalWrapper>
+                  }>
+                  <SearchResult />
+                </Suspense>
               </Wrapper>
             }
           />
@@ -88,20 +127,27 @@ export default function App() {
             path="/hotel-information/:id"
             element={
               <Wrapper>
-                <HotelInformation />
+                <Suspense
+                  fallback={
+                    <ExternalWrapper>
+                      <HotelInformationLoader />
+                    </ExternalWrapper>
+                  }>
+                  <HotelInformation />
+                </Suspense>
               </Wrapper>
             }
-          />
-
-          {/* Later Functionalities: */}
-          <Route path="/plan" element={<PlanTrip />} />
-          <Route path="/add-hotel/" element={!user ? <Home /> : <AddHotel />} />
-          <Route
-            path="/edit-hotel/:id"
-            element={!user ? <Home /> : <EditHotel />}
           />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
   );
 }
+
+// {/* Later Functionalities: */}
+// <Route path="/plan" element={<PlanTrip />} />
+// <Route path="/add-hotel/" element={!user ? <Home /> : <AddHotel />} />
+// <Route
+//   path="/edit-hotel/:id"
+//   element={!user ? <Home /> : <EditHotel />}
+// />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import Skeleton from "react-loading-skeleton";
@@ -226,6 +226,10 @@ const TripDetails = styled.div`
 const Button = styled.div``;
 
 const HotelInformationLoader = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { width } = useWindowDimensions();
   return (
     <Wrapper>

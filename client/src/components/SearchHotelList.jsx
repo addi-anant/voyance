@@ -91,11 +91,13 @@ const HotelList = ({ modal, category }) => {
     <>
       {isLoading || isRefetching ? (
         <SearchHotelListLoader />
-      ) : data.length === 0 ? (
-        <NoResult />
       ) : (
         <>
-          <Container>{accomodationList}</Container>
+          {accomodationList[0].length === 0 ? (
+            <NoResult />
+          ) : (
+            <Container>{accomodationList}</Container>
+          )}
           {isFetchingNextPage && <SearchHotelListLoader />}
         </>
       )}
