@@ -43,5 +43,5 @@ export let persistor = persistStore(store);
 
 /* Without persist: */
 // export const store = configureStore({
-// reducer: rootReducer,
+//   reducer: rootReducer,
 // });

@@ -12,7 +12,7 @@ const Wrapper = ({ children, home }) => {
       <Navbar home={home} />
       {children}
       <Toaster />
-      <Footer />
+      <Footer home={home} />
     </Container>
   );
 };

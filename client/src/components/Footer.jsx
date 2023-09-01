@@ -15,7 +15,7 @@ const Container = styled.div`
   margin-top: 10px;
   padding: 80px 0px;
   align-items: flex-start;
-  background-color: ${(props) => (props.home === true ? "white" : "#f5f5f5")};
+  background-color: ${(props) => (props.home === "home" ? "white" : "#f5f5f5")};
 
   ${mobile({
     gap: "20px",

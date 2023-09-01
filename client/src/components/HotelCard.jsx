@@ -232,7 +232,7 @@ const AccomodationCard = React.forwardRef(({ hotelInfo }, ref) => {
           <Like onClick={() => handleWishlist(hotelInfo)}>
             <Favorite
               style={{
-                color: wishlist.indexOf(hotelInfo) === -1 ? "white" : "red",
+                color: wishlist?.indexOf(hotelInfo) === -1 ? "white" : "red",
               }}
             />
           </Like>

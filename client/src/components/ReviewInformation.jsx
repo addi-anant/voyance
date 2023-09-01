@@ -147,19 +147,19 @@ const ReviewInformation = ({
         <ImageContainer>
           <Image
             src={
-              data.userId.avatar === "default_avatar"
+              data?.userId?.avatar === "default_avatar"
                 ? default_avatar
-                : data.userId.avatar
+                : data?.userId?.avatar
             }
           />
         </ImageContainer>
         <DetailContainer>
-          <Name>{data.userId.name}</Name>
+          <Name>{data?.userId?.name}</Name>
           <Date>{dayjs(data.updatedAt).format("MMMM YYYY")}</Date>
         </DetailContainer>
       </AuthorDetails>
 
-      <AuthorReview>{data.review}</AuthorReview>
+      <AuthorReview>{data?.review}</AuthorReview>
 
       {data?.userId?._id === user?._id && (
         <OptionWrapper>
