@@ -9,7 +9,7 @@ import { Add, Remove, Search } from "@mui/icons-material";
 
 const Wrapper = styled.div`
   width: 100%;
-  bottom: 40px;
+  bottom: 60px;
   display: flex;
   position: absolute;
   align-items: center;

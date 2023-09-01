@@ -27,7 +27,7 @@ const Container = styled.div`
   display: flex;
   height: 80px;
   width: ${(props) =>
-    props.home === "home" ? "calc(100% - 20px)" : "calc(100% - 10%)"};
+    props.home === "home" ? "calc(100% - 30px)" : "calc(100% - 10%)"};
 `;
 
 const LogoContainer = styled.div`
