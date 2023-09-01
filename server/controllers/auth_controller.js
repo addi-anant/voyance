@@ -28,7 +28,8 @@ module.exports.register = async (req, res) => {
     /* Return the required data */
     return res
       .cookie("accessToken", accessToken, {
-        httpOnly: true,
+        sameSite: "none",
+        secure: true,
       })
       .status(200)
       .send(userDetails);
@@ -66,7 +67,8 @@ module.exports.login = async (req, res) => {
   /* Return the required data */
   return res
     .cookie("accessToken", accessToken, {
-      httpOnly: true,
+      sameSite: "none",
+      secure: true,
     })
     .status(200)
     .send(userDetails);
@@ -100,7 +102,8 @@ module.exports.google = async (req, res) => {
       /* Return the required data */
       return res
         .cookie("accessToken", accessToken, {
-          httpOnly: true,
+          sameSite: "none",
+          secure: true,
         })
         .status(200)
         .send(userDetails);
@@ -130,7 +133,8 @@ module.exports.google = async (req, res) => {
     /* Return the required data */
     return res
       .cookie("accessToken", accessToken, {
-        httpOnly: true,
+        sameSite: "none",
+        secure: true,
       })
       .status(200)
       .send(userDetails);
