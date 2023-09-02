@@ -6,11 +6,16 @@ import { axiosBaseURL } from "../utils/axiosBaseURL";
 import { useCallback, useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import SearchHotelListLoader from "./Loaders/SearchHotelListLoader";
+import { largeMobile } from "../utils/responsive";
 
 const Container = styled.div`
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  ${largeMobile({
+    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+  })}
 `;
 
 const HotelList = ({ modal, category }) => {

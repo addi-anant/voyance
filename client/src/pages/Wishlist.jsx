@@ -6,7 +6,7 @@ import { largeMobile, mobile } from "../utils/responsive";
 import { useEffect } from "react";
 
 const ExternalWrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   padding-top: 80px;
   align-items: center;

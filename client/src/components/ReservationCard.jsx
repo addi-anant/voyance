@@ -109,6 +109,7 @@ const Input = styled.input`
   font-size: 14px;
   outline: none;
   border: none;
+  background-color: white;
   border-bottom: 1px solid lightgray;
   font-family: "Roboto", sans-serif;
 

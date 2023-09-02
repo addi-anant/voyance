@@ -155,9 +155,6 @@ const ProfileDashboard = ({ setShowLoginModal, setShowRegisterModal }) => {
               to={`/wishlist`}>
               <MenuItem onClick={handleClose}>Your Wishlist</MenuItem>
             </Link>
-            <Link style={{ textDecoration: "none", color: "inherit" }}>
-              <MenuItem onClick={handleClose}>Become Host</MenuItem>
-            </Link>
           </Container>
         ) : (
           <Container>

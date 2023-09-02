@@ -16,6 +16,7 @@ import Modal from "./Modal";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { AddToWishlist, RemoveFromWishlist } from "../utils/notification";
+import { largeMobile, mobile, tablet } from "../utils/responsive";
 
 const Wrapper = styled.div``;
 
@@ -34,12 +35,25 @@ const Button = styled.button`
   background-color: white;
   opacity: 0;
   cursor: pointer;
+
+  ${mobile({
+    opacity: "1",
+  })}
+
+  ${largeMobile({
+    opacity: "1",
+  })}
+
+  ${tablet({
+    opacity: "1",
+  })}
 `;
 
 const Container = styled.div`
   height: max-content;
   width: calc(100% - 20px);
   padding: 20px 10px;
+
   &:hover ${Button} {
     transition: ease-in 0.5s;
     opacity: 1;
