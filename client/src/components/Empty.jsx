@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { search } from "../redux/filterAndSearchSlice";
-import empty from "../static/Error.png";
 import { desktop, largeMobile } from "../utils/responsive";
+import { noCart, noWishlist } from "../data/url";
 
 const Wrapper = styled.div`
   display: flex;
@@ -106,7 +106,7 @@ const Empty = ({ wishlist }) => {
   return (
     <Wrapper>
       <LeftContainer>
-        <Img src={empty} />
+        <Img src={wishlist ? noWishlist : noCart} />
       </LeftContainer>
       <RightContainer>
         <RightWrapper>

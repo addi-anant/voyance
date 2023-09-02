@@ -35,6 +35,7 @@ const Card = styled.div`
   background-color: white;
   width: 400px;
   position: relative;
+  padding-bottom: 40px;
 
   ${largeMobile({
     width: "70vw",
@@ -226,15 +227,15 @@ const SignIn = ({ setShowLoginModal, setShowRegisterModal }) => {
           </NewAccount>
         </Form>
 
-        <Separator>
+        {/* <Separator>
           <Line />
           <OR> OR </OR>
-        </Separator>
+        </Separator> */}
 
-        <GoogleAuthWrapper onClick={auth_Google}>
+        {/* <GoogleAuthWrapper onClick={auth_Google}>
           <GoogleIcon />
           <GoogleAuthTextField>Continue with Google</GoogleAuthTextField>
-        </GoogleAuthWrapper>
+        </GoogleAuthWrapper> */}
       </Card>
       <Toaster />
     </Wrapper>

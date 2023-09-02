@@ -113,7 +113,7 @@ const Host = styled.div`
   })}
 
   ${mobile({
-    width: "150%",
+    width: "200px",
   })}
 `;
 
@@ -123,6 +123,10 @@ const Detail = styled.div`
 
   ${tablet({
     width: "300px",
+  })}
+
+  ${mobile({
+    width: "150px",
   })}
 `;
 

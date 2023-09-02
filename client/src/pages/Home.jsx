@@ -1,10 +1,11 @@
 import Search from "../components/Search";
-import OurServices from "../components/OurServices";
+import Slider from "../components/Slider";
 import FeaturedProperties from "../components/FeaturedProperties";
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { clear } from "../redux/filterAndSearchSlice";
+import OurNumbers from "../components/OurNumbers";
 
 function Home() {
   const dispatch = useDispatch();
@@ -22,8 +23,9 @@ function Home() {
   return (
     <>
       <Search />
-      <OurServices />
       <FeaturedProperties />
+      <Slider heading={"Explore Destinations:"} />
+      <OurNumbers />
     </>
   );
 }

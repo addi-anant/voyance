@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { search } from "../redux/filterAndSearchSlice";
-import noResult from "../static/NoResult.png";
-import { desktop, largeMobile, tablet } from "../utils/responsive";
+import { desktop, largeMobile } from "../utils/responsive";
+import { noResult } from "../data/url";
 
 const Wrapper = styled.div`
   display: flex;

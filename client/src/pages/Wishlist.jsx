@@ -47,7 +47,6 @@ const Wishlist = () => {
 
   /* Wishlist Info using Redux: */
   const { wishlist } = useSelector((store) => store.wishlist);
-  console.log(wishlist);
 
   return (
     <ExternalWrapper>

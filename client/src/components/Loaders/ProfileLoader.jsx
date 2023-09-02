@@ -122,7 +122,7 @@ const ProfileLoader = () => {
             {Array(5)
               .fill("")
               .map((_, index) => (
-                <DetailContainer>
+                <DetailContainer key={index}>
                   <Label>
                     <Skeleton height={"20px"} />
                   </Label>

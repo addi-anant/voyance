@@ -9,6 +9,7 @@ import useWindowDimensions from "../hooks/useWindowDimensions";
 import HotelCard from "./HotelCard";
 import OptionSlider from "./OptionSlider";
 import FeaturedPropertiesLoader from "./Loaders/FeaturedPropertiesLoader";
+import { largeMobile, mobile } from "../utils/responsive";
 
 const Container = styled.div`
   height: max-content;
@@ -21,9 +22,17 @@ const Container = styled.div`
 `;
 
 const Heading = styled.h1`
-  font-family: "Montserrat", sans-serif;
-  padding: 40px 0px 20px 0px;
+  text-align: center;
   font-family: "Bree Serif", serif;
+  padding: 40px 0px 20px 0px;
+
+  ${largeMobile({
+    fontSize: "32px",
+  })}
+
+  ${mobile({
+    fontSize: "28px",
+  })}
 `;
 
 const Wrapper = styled.div`
@@ -35,7 +44,7 @@ const Wrapper = styled.div`
 
 function FeaturedProperties({ home }) {
   const { width } = useWindowDimensions();
-  const visible = width >= 980 && width < 1315;
+  const visible = width >= 950 && width < 1315;
 
   /* Logic for handling the state of selection property type: */
   const [category, setCategory] = useState("");
@@ -57,7 +66,7 @@ function FeaturedProperties({ home }) {
 
   return (
     <Container>
-      <Heading>Featured Properties</Heading>
+      <Heading>Featured Accomodations</Heading>
       <OptionSlider category={category} setCategory={setCategory} />
 
       <Wrapper>

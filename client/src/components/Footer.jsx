@@ -13,7 +13,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  padding: 80px 0px;
+  padding: 40px 0px;
   align-items: flex-start;
   background-color: ${(props) => (props.home === "home" ? "white" : "#f5f5f5")};
 
@@ -201,7 +201,7 @@ const Input = styled.input`
   outline: none;
   width: 100%;
   font-family: "Noto Serif", serif;
-  background-color: ${(props) => (props.home === true ? "white" : "#f5f5f5")};
+  background-color: ${(props) => (props.home === "home" ? "white" : "#f5f5f5")};
 
   ::placeholder {
     color: gray;
